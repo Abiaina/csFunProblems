@@ -1,6 +1,8 @@
 def integerPallindromCheck (num):
     numList = []
     digitCount = 0
+    first = 0
+    last = -1
 
     if num == None:
         return "false"
@@ -15,10 +17,13 @@ def integerPallindromCheck (num):
         num //= 10
         digitCount += 1
 
-    if numList[0:((digitCount//2) -1)] == numList[-1:-(digitCount//2)]:
-        return "true"
+    while first < (digitCount/2):
+        if numList[first] != numList[last]:
+            return "false"
+        first += 1
+        last -= 1
 
-    return "false"
+    return "true"
 
 print('test')
 
@@ -27,7 +32,7 @@ if integerPallindromCheck(None) == 'false':
 else:
     print("fails for nil values")
 
-if integerPallindromCheck(1001) == 'true':
+if integerPallindromCheck(210012) == 'true':
     print("pass for even digit length pallindrom number")
 else:
     print("fails for even digit length pallindrom number")
